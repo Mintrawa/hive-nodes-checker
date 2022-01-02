@@ -14,7 +14,7 @@ export const testList = (block: number, account: string, permlink: string, obser
       name: "Dynamic Global Propertie",
       description: "Check chain global properties",
       method: "condenser_api.get_dynamic_global_properties",
-      params: {},
+      params: [],
       validator: (result) => {
         return "head_block_number" in (result as DYNAMIC_GLOBAL_PROPERTIES) && "last_irreversible_block_num" in (result as DYNAMIC_GLOBAL_PROPERTIES) ? true : false
       }
