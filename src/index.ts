@@ -60,12 +60,7 @@ export class HiveNodesChecker {
   public async start(): Promise<void> {
     try {
       this.instance.interceptors.request.use((config) => {
-        if(config && config.headers && config.headers.starttime) {
-          this.intercept = `✉️ ${config.headers.starttime}`
-          this.message.error(`Error ${this.intercept}`)
-        }
         if(config && config.headers && config.headers.starttime) delete config.headers.starttime
-        
         return config;
       }, (error) => {
           return Promise.reject(error);
@@ -114,7 +109,6 @@ export class HiveNodesChecker {
         timeout: this.timeout
       }
       this.instance(options).then(async get_config =>{
-        console.log("this.intercept", this.intercept)
         /** hrtime */
         const stopRequestNode = hrtime(startRequestNode)
         const milli = (stopRequestNode[0] * 1e9 + stopRequestNode[1]) / 1e6

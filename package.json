@@ -1,7 +1,7 @@
 {
   "name": "@mintrawa/hive-nodes-checker",
   "version": "0.0.2",
-  "description": "Regularly checks the performance of HIVE blockchain rpc nodes and stores the result in an array in memory.",
+  "description": "Regularly checks availability and performance of HIVE blockchain RPC nodes asynchronously",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -49,5 +49,10 @@
   },
   "contributors": [
     "@mintrawa (https://hive.blog/@mintrawa)"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
