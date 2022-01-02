@@ -1,0 +1,52 @@
+{
+  "name": "@mintrawa/hive-nodes-checker",
+  "version": "0.0.1",
+  "description": "Regularly checks the performance of HIVE blockchain rpc nodes and stores the result in an array in memory.",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "dist/*",
+    "lib/*"
+  ],
+  "scripts": {
+    "commit": "git-cz",
+    "release": "standard-version",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --declaration",
+    "build-browser": "node ./build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mintrawa/hive-nodes-checker.git"
+  },
+  "keywords": [
+    "hive",
+    "rpc node",
+    "hive checker",
+    "hive node",
+    "hive rpc"
+  ],
+  "author": "@mintrawa (https://hive.blog/@mintrawa)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Mintrawa/hive-nodes-checker/issues"
+  },
+  "homepage": "https://github.com/Mintrawa/hive-nodes-checker#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "commitizen": "^4.2.4",
+    "esbuild": "^0.14.9",
+    "eslint": "^8.5.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "rxjs": "^7.5.1"
+  },
+  "contributors": [
+    "@mintrawa (https://hive.blog/@mintrawa)"
+  ]
+}
