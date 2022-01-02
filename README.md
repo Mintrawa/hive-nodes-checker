@@ -58,10 +58,10 @@ const nodes = [
 /** Options */
 const options = {
   full: true,
-  interval: 600000
+  interval: 600 // 10 minutes
 }
 /** Init the checker */
-const checker = new HiveNodesChecker(nodes, options)
+const nodesChecker = new HiveNodesChecker(nodes, options)
 /** Start the checker */
 nodesChecker.start()
 /** Subscribe results */
@@ -82,15 +82,15 @@ nodesChecker.message.subscribe({
 - `url`: array of node url to check
 - `options` (optional):
     - `full` (boolean): if false perform only a `get_config` with response time (default: false)
-    - `interval` (ms): delay in ms between each execution (default: 900000)
-    - `timeout` (ms): timeout in ms for node request (default: 3000)
+    - `interval` (seconds): delay in seconds between each execution (default: 900 seconds)
+    - `timeout` (seconds): timeout in seconds for node request (default: 3 seconds)
 
 ### Light checking
 
 In this case, only a call to the rpc method `condenser_api.get_config` is made.
 
 #### Result
-```
+```ts
 [{
   url:            string
   nb_ok:          number
@@ -108,7 +108,7 @@ In this case, only a call to the rpc method `condenser_api.get_config` is made.
 ```
 
 #### Exemple of result for a light checking
-```
+```js
 [
   {
     url: 'https://api.hive.blog',
@@ -137,7 +137,7 @@ In this case the methods below are checked:
 - `bridge.get_account_posts`
 
 #### Result
-```
+```ts
 [{
   url:            string
   nb_ok:          number
@@ -163,7 +163,7 @@ In this case the methods below are checked:
 ```
 
 #### Exemple of result for a full checking
-```
+```js
 [
   {
     url: 'https://api.hive.blog',
