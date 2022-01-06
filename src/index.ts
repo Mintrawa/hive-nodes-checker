@@ -16,6 +16,9 @@ import { GET_CONFIG }  from "./helpers/CONDENSER_API/GET_CONFIG"
 import {
   OPTIONS, JSONRPC, TEST_RPC_NODE, RPC_NODE, FULL_TEST
 } from "./helpers"
+export {
+  TEST_RPC_NODE, RPC_NODE
+} from "./helpers"
 
 const RegExpUrl = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,=.]+$/
 
@@ -44,11 +47,12 @@ export class HiveNodesChecker {
       const isUrlValid = new RegExp(RegExpUrl)
       if(isUrlValid.test(node)) {
         this.nodes.push({
-          url:      node,
-          nb_ok:    0,
-          nb_error: 0,
-          last_check: Date.now(),
-          status: "unkown",
+          url:         node,
+          nb_ok:       0,
+          nb_error:    0,
+          nb_degraded: 0,
+          last_check:  Date.now(),
+          status:      "unkown",
           test_result: []
         })
       } else {
@@ -169,6 +173,8 @@ export class HiveNodesChecker {
                   r.error = config && config.error ? config.error.message : "validation failed!"
                   /** update status of node */
                   this.nodes[i].status = "degraded"
+                  /** update degraded counter */
+                  this.nodes[i].nb_degraded++
                   /** Update average time */
                   delete this.nodes[i].average_time
                 } else {
@@ -208,6 +214,8 @@ export class HiveNodesChecker {
 
                 /** update status of node */
                 this.nodes[i].status = "degraded"
+                /** update degraded counter */
+                this.nodes[i].nb_degraded++
 
                 /** If old result update else add */
                 if(tIndex >= 0) {

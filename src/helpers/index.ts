@@ -38,6 +38,7 @@ export declare type RPC_NODE = {
   url:            string
   nb_ok:          number
   nb_error:       number
+  nb_degraded:    number
   error?:         string
   last_check:     number
   status:         "unkown"|"online"|"degraded"|"error"

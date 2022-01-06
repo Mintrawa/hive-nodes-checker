@@ -92,18 +92,19 @@ In this case, only a call to the rpc method `condenser_api.get_config` is made.
 #### Result
 ```ts
 [{
-  url:            string
-  nb_ok:          number
-  nb_error:       number
-  error?:         string
-  last_check:     number
-  status:         "unkown"|"online"|"degraded"|"error"
-  duration?:      number
-  average_time?:  number
-  version?:       string
-  deactivated?:   boolean
+  "url":            string
+  "nb_ok":          number
+  "nb_error":       number
+  "nb_degraded":    number
+  "error"?:         string
+  "last_check":     number
+  "status":         "unkown"|"online"|"degraded"|"error"
+  "duration"?:      number
+  "average_time"?:  number
+  "version"?:       string
+  "deactivated"?:   boolean
 
-  test_result:   []
+  "test_result":    []
 }]
 ```
 
@@ -111,14 +112,15 @@ In this case, only a call to the rpc method `condenser_api.get_config` is made.
 ```js
 [
   {
-    url: 'https://api.hive.blog',
-    nb_ok: 1,
-    nb_error: 0,
-    last_check: 1641001821365,
-    status: 'online',
-    test_result: [],
-    version: '1.25.0',
-    duration: 1558
+    "url": "https://api.hive.blog",
+    "nb_ok": 1,
+    "nb_error": 0,
+    "nb_degraded": 0,
+    "last_check": 1641001821365,
+    "status": "online",
+    "test_result": [],
+    "version": "1.25.0",
+    "duration": 1558
   },
   ...
 ]
@@ -139,25 +141,26 @@ In this case the methods below are checked:
 #### Result
 ```ts
 [{
-  url:            string
-  nb_ok:          number
-  nb_error:       number
-  error?:         string
-  last_check:     number
-  status:         "unkown"|"online"|"degraded"|"error"
-  duration?:      number
-  average_time?:  number
-  version?:       string
-  deactivated?:   boolean
+  "url":            string
+  "nb_ok":          number
+  "nb_error":       number
+  "nb_degraded":    number
+  "error"?:         string
+  "last_check":     number
+  "status":         "unkown"|"online"|"degraded"|"error"
+  "duration"?:      number
+  "average_time"?:  number
+  "version"?:       string
+  "deactivated"?:   boolean
 
-  test_result:   [{
-    name:        string
-    description: string
-    method:      string
-    success:     boolean
-    duration:    number
-    error?:      string
-    last_check:  number
+  "test_result":   [{
+    "name":        string
+    "description": string
+    "method":      string
+    "success":     boolean
+    "duration":    number
+    "error"?:      string
+    "last_check":  number
   }]
 }]
 ```
@@ -166,25 +169,25 @@ In this case the methods below are checked:
 ```js
 [
   {
-    url: 'https://api.hive.blog',
-    nb_ok: 1,
-    nb_error: 0,
-    last_check: 1641002823566,
-    status: 'online',
-    test_result: [
+    "url": "https://api.hive.blog",
+    "nb_ok": 1,
+    "nb_error": 0,
+    "last_check": 1641002823566,
+    "status": "online",
+    "test_result": [
       {
-        name: 'Get Account',
-        description: 'Retrieve an account details',
-        method: 'condenser_api.get_accounts',
-        success: true,
-        duration: 1166,
-        last_check: 1641002823566
+        "name": "Get Account",
+        "description": "Retrieve an account details",
+        "method": "condenser_api.get_accounts",
+        "success": true,
+        "duration": 1166,
+        "last_check": 1641002823566
       },
       ...
     ],
-    version: '1.25.0',
-    duration: 1273,
-    average_time: 1748
+    "version": "1.25.0",
+    "duration": 1273,
+    "average_time": 1748
   },
   ...
 ]
