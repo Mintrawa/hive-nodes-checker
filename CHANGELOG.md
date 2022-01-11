@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/Mintrawa/hive-nodes-checker/compare/v0.0.5...v0.0.6) (2022-01-11)
+
+
+### Features
+
+* **nb_degraded:** add counter nb_degraded ([de09f67](https://github.com/Mintrawa/hive-nodes-checker/commit/de09f671a36a0a4e28e1c4d7d351f79178280aa3))
+* **reset:** add reset param + review functions + counters ([6ae932c](https://github.com/Mintrawa/hive-nodes-checker/commit/6ae932c8feef29d9426a73be01f7b9b73636cc1d))
+
 ### [0.0.5](https://github.com/Mintrawa/hive-nodes-checker/compare/v0.0.4...v0.0.5) (2022-01-02)
 
 

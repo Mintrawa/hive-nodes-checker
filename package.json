@@ -1,6 +1,6 @@
 {
   "name": "@mintrawa/hive-nodes-checker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Regularly checks availability and performance of HIVE blockchain RPC nodes asynchronously",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
