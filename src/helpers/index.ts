@@ -11,6 +11,7 @@ export declare type OPTIONS = {
   full?:     boolean
   timeout?:  number
   interval?: number
+  reset?:    number
 }
 
 export declare type JSONRPC = {

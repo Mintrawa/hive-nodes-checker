@@ -35,7 +35,81 @@ $  npm run build
 Build for browser (minified) in `"./dist"` directory
 
 ```bash
-$  npm run build-brower
+$  npm run build-browser
+```
+
+### Initialisation
+
+Initialise the HIVE nodes checker with **params**
+
+```js
+/** Init the checker */
+const nodesChecker = new HiveNodesChecker(["url"])
+```
+
+### Params
+- `url`: array of node url to check
+- `options` (optional):
+    - `full` (boolean): if false perform only a `get_config` with response time (default: false)
+    - `interval` (seconds): delay in seconds between each execution (default: 900 seconds)
+    - `timeout` (seconds): timeout in seconds for node request (default: 3 seconds)
+    - `reset` (number): number max of test before resetting the counters (default: no reset)
+
+### Functions
+
+#### start()
+
+Start the checking process
+
+```js
+/** Start the checker */
+nodesChecker.start()
+```
+
+#### restart()
+
+restart the checking process with the same **params**
+
+```js
+/** Restart the checker */
+nodesChecker.restart()
+```
+
+#### stop()
+
+stop the checking process
+
+```js
+/** Stop the checker */
+nodesChecker.stop()
+```
+
+### Message subscription
+
+#### message.subscribe()
+
+It use RxJS to send the result of a check
+
+```js
+/** Subscribe results */
+nodesChecker.message.subscribe({
+  next: async m => {
+    ...
+  },
+  error: error => {
+    ...
+  }
+})
+```
+
+#### message.unsubscribe()
+
+Unsubscribe manually from the Observable
+
+```js
+/** Unsubscribe results */
+nodesChecker.message.unsubscribe()
+})
 ```
 
 ### Example usage
@@ -58,7 +132,8 @@ const nodes = [
 /** Options */
 const options = {
   full: true,
-  interval: 600 // 10 minutes
+  interval: 600, // 10 minutes
+  reset: 144 // every 144 tests => 24 hours x 6 (10 minutes = 6 test per hours)
 }
 /** Init the checker */
 const nodesChecker = new HiveNodesChecker(nodes, options)
@@ -74,16 +149,12 @@ nodesChecker.message.subscribe({
     console.log('=====> ERROR MESSAGE')
     console.log(error)
     console.log()
+
+    /** Restart the checker */
+    nodesChecker.restart()
   }
 })  
 ```
-
-### Params
-- `url`: array of node url to check
-- `options` (optional):
-    - `full` (boolean): if false perform only a `get_config` with response time (default: false)
-    - `interval` (seconds): delay in seconds between each execution (default: 900 seconds)
-    - `timeout` (seconds): timeout in seconds for node request (default: 3 seconds)
 
 ### Light checking
 

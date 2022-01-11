@@ -30,6 +30,7 @@ export class HiveNodesChecker {
   full     = false
   interval = 900000
   timeout  = 3000
+  reset?: number
 
   tests: FULL_TEST[] = testList(60000000, "hiveio", "hive-first-community-hardfork-complete", "mintrawa")
 
@@ -41,6 +42,7 @@ export class HiveNodesChecker {
       if(options.full && (typeof options.full) === 'boolean') this.full = options.full
       if(options.interval && typeof options.interval === 'number') this.interval = options.interval * 1000
       if(options.timeout && typeof options.timeout === 'number') this.timeout = options.timeout * 1000
+      if(options.reset && typeof options.reset === 'number') this.reset = options.reset
     }
 
     for (const node of nodes) {
@@ -88,12 +90,24 @@ export class HiveNodesChecker {
     clearInterval(this.timer)
   }
 
+  public restart(): void {
+    clearInterval(this.timer)
+    this.start()
+  }
+
   private async check(): Promise<void> {
     /** Define the execution time (used for sendMessage) */
     const checkTime = Date.now()
 
     /** Node Loop */
     for (const [i, node] of this.nodes.entries()) {
+      /** We reach the reset number of tests => reinit counters value */
+      if(this.reset && (node.nb_ok + node.nb_error + node.nb_degraded) === this.reset) {
+        this.nodes[i].nb_ok = 0
+        this.nodes[i].nb_error = 0
+        this.nodes[i].nb_degraded = 0
+      }
+
       /** hrtime */
       const startRequestNode = hrtime()
 
@@ -175,6 +189,8 @@ export class HiveNodesChecker {
                   this.nodes[i].status = "degraded"
                   /** update degraded counter */
                   this.nodes[i].nb_degraded++
+                  /** correct OK counter */
+                  this.nodes[i].nb_ok--
                   /** Update average time */
                   delete this.nodes[i].average_time
                 } else {
@@ -216,6 +232,8 @@ export class HiveNodesChecker {
                 this.nodes[i].status = "degraded"
                 /** update degraded counter */
                 this.nodes[i].nb_degraded++
+                /** correct OK counter */
+                this.nodes[i].nb_ok--
 
                 /** If old result update else add */
                 if(tIndex >= 0) {
