@@ -195,7 +195,9 @@ export class HiveNodesChecker {
                   delete this.nodes[i].average_time
                 } else {
                   /** update status of node */
-                  this.nodes[i].status = "online"
+                  if(this.nodes[i].status !== "degraded") {
+                    this.nodes[i].status = "online"
+                  }
                   /** Update average time */
                   this.nodes[i].average_time = this.nodes[i].average_time ? Math.round(((this.nodes[i].average_time as number) + r.duration)/ 2) : r.duration
                 }

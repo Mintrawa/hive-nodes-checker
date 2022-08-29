@@ -3,8 +3,12 @@ import { DYNAMIC_GLOBAL_PROPERTIES } from "./CONDENSER_API/DYNAMIC_GLOBAL_PROPER
 import { GET_ACCOUNT } from "./CONDENSER_API/GET_ACCOUNT"
 import { GET_ACCOUNT_HISTORY } from "./CONDENSER_API/GET_ACCOUNT_HISTORY"
 import { GET_ACCOUNT_POSTS }   from "./BRIDGE/GET_ACCOUNT_POSTS"
+import { GET_ACCOUNT_REPUTATION } from "./CONDENSER_API/GET_ACCOUNT_REPUTATION"
 import { GET_BLOCK }   from "./CONDENSER_API/GET_BLOCK"
+import { GET_BLOG_ENTRY } from "./CONDENSER_API/GET_BLOG_ENTRY"
 import { GET_CONFIG }  from "./CONDENSER_API/GET_CONFIG"
+import { GET_CONTENT } from "./CONDENSER_API/GET_CONTENT"
+import { GET_DISCUSSION } from "./CONDENSER_API/GET_DISCUSSION"
 import { GET_POST }    from "./BRIDGE/GET_POST"
 
 export declare type OPTIONS = {
@@ -17,7 +21,17 @@ export declare type OPTIONS = {
 export declare type JSONRPC = {
   jsonrpc: string
   id:      number|string
-  result?: GET_CONFIG|DYNAMIC_GLOBAL_PROPERTIES|GET_BLOCK|GET_ACCOUNT[]|GET_POST|GET_ACCOUNT_HISTORY[]|GET_ACCOUNT_POSTS[]
+  result?: GET_CONFIG 
+  |DYNAMIC_GLOBAL_PROPERTIES
+  |GET_BLOCK
+  |Array<GET_ACCOUNT>
+  |GET_POST
+  |Array<GET_ACCOUNT_HISTORY>
+  |Array<GET_ACCOUNT_POSTS>
+  |Array<GET_ACCOUNT_REPUTATION>
+  |Array<GET_BLOG_ENTRY>
+  |GET_CONTENT
+  |Array<GET_DISCUSSION>
   error?: {
     code:    number
     message: string
@@ -48,7 +62,7 @@ export declare type RPC_NODE = {
   version?:       string
   deactivated?:   boolean
 
-  test_result:   TEST_RPC_NODE[]
+  test_result:   Array<TEST_RPC_NODE>
 }
 
 export declare type FULL_TEST = {
@@ -56,6 +70,17 @@ export declare type FULL_TEST = {
   description: string
   method: string
   params: any
-  validator: (result: GET_CONFIG|DYNAMIC_GLOBAL_PROPERTIES|GET_BLOCK|GET_ACCOUNT[]|GET_POST|GET_ACCOUNT_HISTORY[]|GET_ACCOUNT_POSTS[]) => boolean
+  validator: (
+    result: GET_CONFIG
+    |DYNAMIC_GLOBAL_PROPERTIES
+    |GET_BLOCK
+    |Array<GET_ACCOUNT>
+    |GET_POST
+    |Array<GET_ACCOUNT_HISTORY>
+    |Array<GET_ACCOUNT_POSTS>
+    |Array<GET_ACCOUNT_REPUTATION>
+    |Array<GET_BLOG_ENTRY>
+    |GET_CONTENT
+    |Array<GET_DISCUSSION>) => boolean
 }
 

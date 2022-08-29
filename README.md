@@ -202,10 +202,15 @@ In this case, only a call to the rpc method `condenser_api.get_config` is made.
 In this case the methods below are checked:
 
 - `condenser_api.get_config`
-- `condenser_api.get_dynamic_global_properties`
-- `condenser_api.get_block`
 - `condenser_api.get_accounts`
 - `condenser_api.get_account_history`
+- `condenser_api.get_accounts_reputations`
+- `condenser_api.get_block`
+- `condenser_api.get_blog_entries`
+- `condenser_api.get_content`
+- `condenser_api.get_dynamic_global_properties`
+- `condenser_api.get_discussions_by_blog`
+
 - `bridge.get_post`
 - `bridge.get_account_posts`
 
