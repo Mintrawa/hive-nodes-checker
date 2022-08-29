@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/Mintrawa/hive-nodes-checker/compare/v0.0.6...v0.0.7) (2022-08-29)
+
+
+### Bug Fixes
+
+* **status:** fix the false status online of a node when in reality it is degraded + Adding more test ([151037c](https://github.com/Mintrawa/hive-nodes-checker/commit/151037cbcf961ec9df8416e4d4a99e2d90fea691))
+
 ### [0.0.6](https://github.com/Mintrawa/hive-nodes-checker/compare/v0.0.5...v0.0.6) (2022-01-11)
 
 
